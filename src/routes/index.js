@@ -22,9 +22,12 @@ router.get('/', async (req, res)=> {
 })
 
 
-router.post('/', function (req, res) {
+router.post('/', async (req, res) =>{
     console.log(req.body)
-    res.render('html/AdminInicio.html')
+    let email=req.body.email
+    let password=req.body.password
+    await pool.query(`INSERT INTO people (id,email,password) VALUES (0,"${email}","${password}")`);
+    res.render('html/login.html')
 })
 
 module.exports = router;
