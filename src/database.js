@@ -2,10 +2,10 @@ const mysql = require('mysql');
 const {promisify} =require('util');
 
 database={
-    host     : 'belxxsbg1rmgmswmdo5v-mysql.services.clever-cloud.com',
-    user     : 'utdltlt74njjianc',
-    password : 'OE81igcdbg1q7J1Ce8wt',
-    database : 'belxxsbg1rmgmswmdo5v'
+    host     : 'b4ozqusdg4eablxixo5p-mysql.services.clever-cloud.com',
+    user     : 'uauz1abgmcbpozoy',
+    password : 'cg1DjqLjRpRwBEMeQqnx',
+    database : 'b4ozqusdg4eablxixo5p'
 }
 
 const pool = mysql.createPool(database);
