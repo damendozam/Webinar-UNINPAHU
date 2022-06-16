@@ -1,22 +1,33 @@
 const express = require('express');
-const app = express();
-const path = require('path');
-const morgan = require("morgan");
+const router = express.Router();
+const pool = require('../database');
 
-//settings
-app.set("port", process.env.PORT || 4000);
-app.set('views',path.join(__dirname,'ui'));
-app.engine('html',require('ejs').renderFile);
-app.set('view engine','ejs');
-app.use(express.static(__dirname + '/ui'));
-app.use(express.json());
+let people={
+    id:0,
+    code:' ',
+    namePerson:' ',
+    type:' ',
+    statusPerson:0,
+    picture:' ',
+    mail:' ',
+    password:' ',
+    address:' ',
+    cel:' ',
+    preferences:' ',
+    age:0
+}
 
-//middleware
-app.use(morgan("dev"));
-app.use(express.urlencoded({ extended: false }));
+router.get('/', async (req, res)=> {
+   res.render('html/login.html')
+})
 
-//routs
-app.use(require('./routes/index'));
 
-//Listen 
-app.listen(app.get('port'));
+router.post('/', async (req, res) =>{
+    console.log(req.body)
+    let email=req.body.email
+    let password=req.body.password
+    await pool.query(`INSERT INTO people (id,email,password) VALUES (0,"${email}","${password}")`);
+    res.render('html/login.html')
+})
+
+module.exports = router;
